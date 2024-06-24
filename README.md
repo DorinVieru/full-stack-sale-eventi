@@ -1,66 +1,259 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<a name="readme-top"></a>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<!-- BADGE -->
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/DorinVieru/landing-page-product?style=for-the-badge&logo=github&color=abff84)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/DorinVieru/landing-page-product?style=for-the-badge&logo=github&color=%23ABFF84)
+![GitHub Repo stars](https://img.shields.io/github/stars/DorinVieru/landing-page-product?style=for-the-badge&color=abff84)
+[![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/dorin-vieru-1997dev/)
 
-## About Laravel
+<!-- LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/DorinVieru/full-stack-sale-eventi">
+    <a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="300" alt="Laravel Logo">
+  </a>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+  <h3 align="center">Gestionale Sale Eventi: ResEasy</h3>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+  <p align="center">
+    Il gestionale che ti facilita la tua organizzazione!
+    <br />
+    <a href="https://github.com/DorinVieru/full-stack-sale-eventi"><strong>Visualizza il codice »</strong></a>
+    <br>
+  </p>
+</div>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+<!-- INDICE -->
+<details>
+  <summary>Indice</summary>
+  <ol>
+    <li>
+      <a href="#multilanguage">Multilanguage</a>
+    </li>
+    <li>
+      <a href="#argomenti-trattati">Argomenti trattati</a>
+    </li>
+    <li>
+      <a href="#consegna-del-progetto">Consegna del progetto</a>
+      <ul>
+        <li><a href="#tecnologie-utilizzate">Tecnologie utilizzate</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#per-iniziare">Per iniziare</a>
+      <ul>
+        <li><a href="#prerequisiti">Prerequisiti</a></li>
+        <li><a href="#installazione">Installazione</a></li>
+        <li><a href="#laravel-per-saperne-di-più">Laravel: per saperne di più</a></li>
+      </ul>
+    </li>
+    <li><a href="#documentazione">Documentazione</a></li>
+    <li><a href="#contatti">Contatti</a></li>
+    <li><a href="#licenza">Licenza</a></li>
+  </ol>
+</details>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<!-- Multilanguage -->
+## Multilanguage
+Read the README in other languages: [README-EN](README-EN.md).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<!-- ARGOMENTI TRATTATI -->
+## Argomenti trattati
+- Modellazione DB
+- Migrations e Seeders
+- Models e Controllers
+- Routing web e routing API
+- Autenticazione
+- [Funzioni anonime in php](https://www.php.net/manual/en/functions.anonymous.php)
+- File storage e upload immagine
+- Gestione delle date (Carbon)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+<!-- CONSEGNA -->
+## Consegna del Progetto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+<div>
+  <h4>Desktop View</h4>
+  <strong>:warning: Work in progress</strong>
+  <h4>Mobile View</h4>
+  <strong>:warning: Work in progress</strong>
+</div>
+<br>
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+📚 📑 **Consegna** <br>
+Realizziamo un’applicazione in Laravel che gestisce la creazione e la prenotazione in maniera interattiva di Eventi e Sale Meeting.
+E’ prevista una sola tipologia di utente: admin. L’admin ha accesso alla creazione degli Eventi e delle Sale Meeting e all’assegnazione del singolo Evento ad una Sala Meeting.
 
-## Contributing
+Sugli eventi sono possibili le seguenti operazioni: creazione e assegnazione ad una singola Sala Meeting in un dato intervallo di giorni. Un evento deve essere obbligatoriamente assegnato ad una sala meeting **disponibile** in quelle date in fase di creazione.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Milestone
 
-## Code of Conduct
+1️⃣ **Milestone 1** <br>
+Sviluppare un diagramma ER per le entità e le relazioni dell’applicativo.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2️⃣ **Milestone 2** <br>
+Seguendo il diagramma creato nella prima milestone, creiamo e popoliamo il database attraverso migrations e seeders (si consiglia l’uso dei Faker per popolare le risorse).
 
-## Security Vulnerabilities
+Teniamo presente che una entità Sala Meeting dovrà avere almeno le seguenti caratteristiche:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- id
+- nome
+- descrizione
+- numero posti disponibili
 
-## License
+Mentre una entità Evento dovrà avere almeno le seguenti caratteristiche:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- id
+- titolo
+- descrizione
+- data inizio
+- data fine
+- immagine
+
+e inoltre dovrà avere una sala meeting ad esso assegnata.
+
+3️⃣ **Milestone 3**
+
+Realizziamo un setup dell’applicativo con backoffice e autenticazione riservata ad un unico utente amministratore: l’admin.
+
+4️⃣ **Milestone 4**
+
+Aggiungiamo la possibilità di creare un nuovo Evento, a cui andrà obbligatoriamente assegnata anche una sala meeting. Nella selezione possiamo includere tutte le sale meeting.
+
+5️⃣ **Milestone 5**
+
+Aggiungiamo la possibilità di creare una nuova Sala Meeting.
+
+6️⃣ **Milestone 6**
+
+Aggiungiamo la possibilità di assegnare in fase di creazione ad un evento **esclusivamente le sale meeting disponibili nelle date selezionate,** controllandone quindi la disponibilità in un dato intervallo di giorni.
+Una sala meeting può avere solo un evento per ogni giorno, un evento può durare più giorni consecutivi e solo in una sala meeting.
+
+Una sala meeting è quindi occupata quando:
+
+- Esiste un evento in quella data
+
+🌟**Bonus**: <br>
+Realizzare CRUD aggiuntive per le due entità presenti nel progetto.
+
+
+
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+<!-- tecnologie utilizzate -->
+### Tecnologie utilizzate
+
+Di seguito le tecnologie utilizzate per la realizzazione di ResEasy:
+
+|      Nome Tecnologia      |                         Icona                                                                |
+| :----------------------:  | :------------------------------------------------------------------------------------------: |
+|         `Html`            |    [![My Skills](https://skillicons.dev/icons?i=html)](https://skillicons.dev)               |
+|         `Css`             |  [![My Skills](https://skillicons.dev/icons?i=css)](https://skillicons.dev)                  |
+|         `SASS`            |     [![My Skills](https://skillicons.dev/icons?i=sass)](https://skillicons.dev)              |
+|       `Bootstrap`         |       [![My Skills](https://skillicons.dev/icons?i=bootstrap)](https://skillicons.dev)       |
+|      `Javascript`         |       [![My Skills](https://skillicons.dev/icons?i=js)](https://skillicons.dev)              |
+|        `Laravel`          |    [![My Skills](https://skillicons.dev/icons?i=laravel)](https://skillicons.dev)            |
+|          `PHP`            |    [![My Skills](https://skillicons.dev/icons?i=php)](https://skillicons.dev)                |
+|         `MySQL`           |    [![My Skills](https://skillicons.dev/icons?i=mysql)](https://skillicons.dev)              |
+|          `npm`            |    [![My Skills](https://skillicons.dev/icons?i=npm)](https://skillicons.dev)                |
+
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+
+<!-- PER INIZIARE -->
+## Per iniziare
+
+### :warning::no_entry: Le istruzioni non sono ancora concluse, pertanto si prega di attendere prima di procedere alla clonazione del progetto in locale. :warning::no_entry:
+Se si desidera installare l'applicazione in locale, ci sono diversi passaggi a cui prestare attenzione. Li ho riassunti qui di seguito, qualora ci fossere complicazioni vi rimando alla documentazione ufficiale per ogni tipo di comando che dovete inserire.
+
+<!-- PREREQUISITI -->
+### Prerequisiti
+
+Prima di tutto, è essenziale inizializzare / creare una nuova cartella in locale. Useremo il terminale, digitando il comando necessiare per installare laravel.
+
+  ```
+  composer create-project laravel/laravel nome_progetto
+  ```
+Per "nome_progetto" si intende il nome del vostro personale progetto che desiderate creare, non il progetto da clonare da GitHub. 
+
+<!-- INSTALLAZIONE -->
+### Installazione
+
+_Qui di seguito potete trovare un esempio di come clonare la repo in locale, ma non è l'unico metodo. Qualora foste a conoscenza di un metodo migliore, utilizzatelo._
+
+1. Una volta all'interno di Visual Studio Code, aprite il terminale andando nel voce del menu 'Terminal' e poi 'New Terminal'
+2. Clonate la repo digitando il seguente comando
+   ```
+   git clone https://github.com/DorinVieru/full-stack-sale-eventi.git
+   ```
+3. Installate composer
+   ```
+   composer install
+   ```
+4. Avviate PHP Launcher (se utilizzate Windows) o MAMP (se utilizzate Mac)
+5. Successivamente potete avviare il comando per npm
+   ```
+   npm run dev
+   ```
+6. Infine avviate l'applicazione con php
+   ```
+   php artisan serve
+   ```
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+<!-- LARAVEL PER SAPERE DI PIU -->
+## Laravel: per saperne di più
+
+Laravel è un framework per applicazioni web con una sintassi espressiva ed elegante. Crediamo che lo sviluppo debba essere un'esperienza piacevole e creativa per essere veramente appagante. Laravel elimina le difficoltà dello sviluppo semplificando i compiti comuni utilizzati in molti progetti web, come:
+
+- [Motore di routing semplice e veloce](https://laravel.com/docs/routing).
+- [Potente contenitore per l'injection delle dipendenze](https://laravel.com/docs/container).
+- Molti back-end per l'archiviazione delle [sessioni](https://laravel.com/docs/session) e della [cache](https://laravel.com/docs/cache).
+- [Database ORM](https://laravel.com/docs/eloquent) espressivo e intuitivo.
+- [Migrazioni](https://laravel.com/docs/migrations) indipendenti dal database.
+- [Elaborazione dei job in background robusta](https://laravel.com/docs/queues).
+- [Broadcasting degli eventi in tempo reale](https://laravel.com/docs/broadcasting).
+
+Laravel è accessibile, potente e fornisce gli strumenti necessari per applicazioni grandi e robuste.
+
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+
+
+<!-- DOCUMENTAZIONE -->
+## Documentazione
+
+Qui l'elenco della documentazione ufficiale per i servizi utilizzati:
+- [npm](https://www.npmjs.com/)
+- [Laravel](https://laravel.com/docs)
+- Se vuoi approfondire Laravel, ecco dove puoi farlo: [Laravel Bootcamp](https://bootcamp.laravel.com) e [Laracasts](https://laracasts.com).
+- [PHP](https://www.php.net/docs.php)
+- [MySQL](https://dev.mysql.com/doc/) (per il database)
+- [Bootstrap](https://getbootstrap.com/) (stilizzazione del progetto)
+- [Google Fonts](https://fonts.google.com/) per il font principale del progetto
+
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+
+<!-- CONTATTI -->
+## Contatti
+
+Dorin Vieru
+- Linkedin: https://www.linkedin.com/in/dorin-vieru-1997dev/
+- Email: <a href="mailto:info@dorinvieru.it">info@dorinvieru.it</a>
+
+Link al progetto: [https://github.com/DorinVieru/full-stack-sale-eventi](https://github.com/DorinVieru/full-stack-sale-eventi)
+
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+<!-- LICENZA -->
+## Licenza
+Laravel è un framework open-source con licenza [MIT license](https://opensource.org/licenses/MIT).
+
+<p align="right">(<a href="#readme-top">torna all'inizio</a>)</p>
+
+<!-- MARKDOWN LINKS -->
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
