@@ -1,9 +1,9 @@
 <a name="readme-top"></a>
 
 <!-- BADGE -->
-![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/DorinVieru/landing-page-product?style=for-the-badge&logo=github&color=abff84)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/DorinVieru/landing-page-product?style=for-the-badge&logo=github&color=%23ABFF84)
-![GitHub Repo stars](https://img.shields.io/github/stars/DorinVieru/landing-page-product?style=for-the-badge&color=abff84)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/DorinVieru/full-stack-sale-eventi?style=for-the-badge&logo=github&color=abff84)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/DorinVieru/full-stack-sale-eventi?style=for-the-badge&logo=github&color=%23ABFF84)
+![GitHub Repo stars](https://img.shields.io/github/stars/DorinVieru/full-stack-sale-eventi?style=for-the-badge&color=abff84)
 [![LinkedIn][linkedin-shield]](https://www.linkedin.com/in/dorin-vieru-1997dev/)
 
 <!-- LOGO -->
