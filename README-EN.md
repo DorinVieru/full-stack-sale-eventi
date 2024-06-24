@@ -55,7 +55,7 @@
 
 <!-- Multilanguage -->
 ## Multilanguage
-Read the README in other languages: [README-IT](readme.md).
+Read the README in other languages: [README-IT](README.md).
 
 <!-- Covered Topics -->
 ## Covered Topics
