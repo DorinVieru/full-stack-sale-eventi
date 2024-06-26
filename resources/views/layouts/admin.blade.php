@@ -34,6 +34,9 @@
                             <li class="nav-item">
                                 <a href="{{ route('dashboard') }}" class="nav-link text-white {{ Route::currentRouteName() == 'dashboard' ? 'bg-violet rounded-2' : '' }}"><i class="fa-solid fa-tachometer-alt"></i> Dashboard</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.rooms.index') }}" class="nav-link text-white {{ Route::currentRouteName() == 'admin.rooms.index' ? 'bg-violet rounded-2' : '' }}"><i class="fa-solid fa-house-user"></i> Sala Meeting</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="pb-3">
