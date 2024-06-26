@@ -44,7 +44,7 @@ class MeetingRoomController extends Controller
     {
         $form_rooms = $request->all();
 
-        // Creare una query per la modifica di un progetto con lo stesso titolo
+        // Creare una query per la modifica di una Sala Meeting con lo stesso titolo
         $exists = MeetingRoom::where('name', 'LIKE', $form_rooms['name'])->where('id', '!=', $room->id)->get();
         // Condizione che mi permette di modificare un progetto mantenendo lo stesso titolo. Ma se cambio titolo e ne inserisco uno già presente in un altro progetto, mi mostra l'errore impostato.
         if (count($exists) > 0) {

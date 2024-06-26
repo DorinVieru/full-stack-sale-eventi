@@ -37,6 +37,9 @@
                             <li class="nav-item">
                                 <a href="{{ route('admin.rooms.index') }}" class="nav-link text-white {{ Route::currentRouteName() == 'admin.rooms.index' ? 'bg-violet rounded-2' : '' }}"><i class="fa-solid fa-house-user"></i> Sala Meeting</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="{{ route('admin.events.index') }}" class="nav-link text-white {{ Route::currentRouteName() == 'admin.events.index' ? 'bg-violet rounded-2' : '' }}"><i class="fa-solid fa-calendar-days"></i> Eventi</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="pb-3">
