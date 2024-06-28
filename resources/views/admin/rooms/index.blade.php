@@ -10,7 +10,7 @@
         </div>
         <div class="col-12 mt-5 table-responsive">
             <table id="table-project" class="table table-striped border align-middle">
-                <thead class="table-dark">
+                <thead class="table-light text-center">
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
@@ -27,21 +27,14 @@
                             <td class="text-capitalize">{{ $room->name }}</td>
                             <td class="">{{ Str::limit($room->description, 20, '...') }}</td>
                             <td>{{ $room->num_of_places_available }}</td>
-                            <td><img src="{{ $room->cover_image != null ?  asset('/storage/' . $room->cover_image) : asset('/img/no-image.jpg') }}" alt="{{ $room->name }}" class="w-25 rounded-3"></td>
+                            <td class="td-img"><img src="{{ $room->cover_image != null ?  asset('/storage/' . $room->cover_image) : asset('/img/no-image.jpg') }}" alt="{{ $room->name }}" class="rounded-3"></td>
                             <td>
                                 <div class="d-flex">
                                     {{-- VIEW BUTTON --}}
                                     <a href="{{ route('admin.rooms.show', ['room' => $room->id]) }}" class="btn btn-sm square btn-primary" title="Visualizza Sala Meeting"><i class="fas fa-eye"></i></a>
                                     {{-- EDIT BUTTON --}}
                                     <a href="{{ route('admin.rooms.edit', ['room' => $room->id]) }}" class="btn btn-sm square btn-warning mx-2" title="Modifica Sala Meeting"><i class="fas fa-edit"></i></a>
-                                    {{-- DELETE BUTTON --}}
-                                    {{-- <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler cancellare {{ $project->title }}?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm square btn-danger"><i class="fas fa-trash"></i></button>
-                                    </form> --}}
-
-                                    {{-- MODALE --}}
+                                    {{-- DELETE MODALE --}}
                                     <button class="btn btn-sm square btn-danger" data-bs-toggle="modal" data-bs-target="#modal_room_delete-{{ $room->id }}" title="Elimina Sala Meeting"><i class="fas fa-trash"></i></button> 
                                 </div>
                             </td>

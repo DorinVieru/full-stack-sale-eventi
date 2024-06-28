@@ -10,10 +10,10 @@
         </div>
         <div class="col-12 mt-5 table-responsive">
             <table id="table-project" class="table table-striped border align-middle">
-                <thead class="table-dark">
+                <thead class="table-light text-center">
                     <tr>
                         <th>ID</th>
-                        <th>Sala Assegnata</th>
+                        <th>Sala</th>
                         <th>Titolo</th>
                         <th>Descrizione</th>
                         <th>Data Inizio</th>
@@ -27,19 +27,19 @@
                     @foreach ($events as $event)
                         <tr>
                             <td class="fw-bold">{{ $event->id }}</td>
-                            <td class="text-capitalize">{{ $event->meeting_room_id }}</td>
+                            <td> <a href="{{ route('admin.rooms.show', ['room' => $event->meeting_room_id]) }}"> {{ $event->meeting_room_id }} </a> </td>
                             <td class="text-capitalize">{{ $event->title }}</td>
                             <td class="">{{ Str::limit($event->description, 20, '...') }}</td>
                             <td>{{ \Carbon\Carbon::parse($event->start_date)->format('d/m/Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($event->end_date)->format('d/m/Y') }}</td>
-                            <td><img src="{{ $event->cover_image != null ?  asset('/storage/' . $event->cover_image) : asset('/img/no-image.jpg') }}" alt="{{ $event->name }}" class="w-25 rounded-3"></td>
+                            <td><img src="{{ $event->cover_image != null ?  asset('/storage/' . $event->cover_image) : asset('/img/no-image.jpg') }}" alt="{{ $event->name }}" class="rounded-3"></td>
                             <td>
                                 @if (\Carbon\Carbon::now()->setTimezone('Europe/Rome') >= $event->start_date && \Carbon\Carbon::now()->setTimezone('Europe/Rome') <= $event->end_date)
-                                    <span class="text-success fw-bold">In corso</span>
+                                    <span class="text-success fw-bold fs-4"><i class="fa-solid fa-user-tie"></i></span>
                                 @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') > $event->end_date)
-                                    <span class="text-danger fw-bold">Finito</span>
+                                    <span class="text-danger fw-bold fs-4"><i class="fa-solid fa-ban"></i></span>
                                 @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') < $event->start_date)
-                                    <span class="text-warning fw-bold">In arrivo</span>
+                                    <span class="text-warning fw-bold fs-4"><i class="fa-solid fa-hourglass-start"></i></span>
                                 @endif
                             </td>
                             <td>
@@ -48,14 +48,7 @@
                                     <a href="{{ route('admin.events.show', ['event' => $event->id]) }}" class="btn btn-sm square btn-primary" title="Visualizza Sala Meeting"><i class="fas fa-eye"></i></a>
                                     {{-- EDIT BUTTON --}}
                                     <a href="{{ route('admin.events.edit', ['event' => $event->id]) }}" class="btn btn-sm square btn-warning mx-2" title="Modifica Sala Meeting"><i class="fas fa-edit"></i></a>
-                                    {{-- DELETE BUTTON --}}
-                                    {{-- <form action="{{ route('admin.projects.destroy', ['project' => $project->id]) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler cancellare {{ $project->title }}?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button class="btn btn-sm square btn-danger"><i class="fas fa-trash"></i></button>
-                                    </form> --}}
-
-                                    {{-- MODALE --}}
+                                    {{-- DELETE MODALE --}}
                                     <button class="btn btn-sm square btn-danger" data-bs-toggle="modal" data-bs-target="#modal_event_delete-{{ $event->id }}" title="Elimina Sala Meeting"><i class="fas fa-trash"></i></button> 
                                 </div>
                             </td>

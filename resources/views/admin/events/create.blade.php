@@ -65,11 +65,11 @@
                 <div class="mb-3">
                     <input type="hidden" name="meeting_room_id" id="meeting_room_id">
                     <input type="text" name="meeting_room_name" class="form-control mb-2" id="meeting_room_name" placeholder="Sala Meeting Selezionata" readonly>
-                    <button type="button" id="search-room-btn" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#meetingRoomModal" disabled>Cerca Sale Meeting Disponibili</button>
+                    <button type="button" id="search-room-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#meetingRoomModal" disabled>Cerca Sale Meeting Disponibili</button>
                 </div>
 
                 <div class="d-flex justify-content-center mt-4 mb-5">
-                    <button type="submit" class="btn btn-primary px-5 fs-4" id="create-event-btn" disabled>Crea Ora!</button>
+                    <button type="submit" class="btn btn-primary px-5 fs-4" id="create-event-btn" style="display: none">Crea Ora!</button>
                 </div>
             </form>
         </div>
@@ -88,9 +88,6 @@
 {{-- SCRIPT PER MODALE --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-        axios.defaults.withCredentials = true;
-        
         const startDateInput = document.getElementById('start_date');
         const endDateInput = document.getElementById('end_date');
         const searchRoomBtn = document.getElementById('search-room-btn');
@@ -111,7 +108,7 @@
         function resetMeetingRoomSelection() {
             meetingRoomNameInput.value = '';
             meetingRoomIdInput.value = '';
-            createEventBtn.disabled = true;
+            createEventBtn.style.display = 'none';
         }
 
         startDateInput.addEventListener('change', enableSearchRoomButton);
@@ -151,7 +148,7 @@
                         const roomName = this.getAttribute('data-room-name');
                         meetingRoomIdInput.value = roomId;
                         meetingRoomNameInput.value = roomName;
-                        createEventBtn.disabled = false;
+                        createEventBtn.style.display = 'block';
                         $('#meetingRoomModal').modal('hide');
                     });
                 });

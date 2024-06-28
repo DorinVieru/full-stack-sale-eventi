@@ -12,8 +12,29 @@
                         <p class="card-text">{{ $room->description }}</p>
                     </div>
                         <ul class="list-group list-group-flush">
-                            {{-- TIPO DI PROGETTO --}}
-                            {{-- <li class="list-group-item"><strong>Tipo di progetto:</strong> {{ $room->type != null ? $room->type->name : 'Non assegnato' }}</li> --}}
+                            {{-- EVENTO ASSEGNATO --}}
+                            <li class="list-group-item"> <strong>Eventi in programma</strong> 
+                                @foreach ($room->events as $item)
+                                    <div class="list-group">
+                                        <a href="{{ route('admin.events.show', ['event' => $item->id]) }}" class="list-group-item list-group-item-action">
+                                            <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-2 fw-bold">{{ $item->title }}</h5>
+                                            <small>Iniazia il: {{ \Carbon\Carbon::parse($item->start_date)->format('d/m/Y') }}</small>
+                                            </div>
+                                            <p class="mb-1"> Stato evento:
+                                                @if (\Carbon\Carbon::now()->setTimezone('Europe/Rome') >= $item->start_date && \Carbon\Carbon::now()->setTimezone('Europe/Rome') <= $item->end_date)
+                                                    <span class="text-success fw-bold"><i class="fa-solid fa-user-tie"></i> In corso </span>
+                                                @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') > $item->end_date)
+                                                    <span class="text-danger fw-bold"><i class="fa-solid fa-ban"></i> Finito </span>
+                                                @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') < $item->start_date)
+                                                    <span class="text-warning fw-bold"><i class="fa-solid fa-hourglass-start"></i> In programma </span>
+                                                @endif
+                                            </p>
+                                            <small>Termina il: {{ \Carbon\Carbon::parse($item->end_date)->format('d/m/Y') }}</small>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </li>
                             {{-- POSTI DISPONIBILI --}}
                             <li class="list-group-item"><strong><i class="fa-solid fa-chair"></i> Capienza Sala:</strong> {{ $room->num_of_places_available }} posti a sedere</li>
                             {{-- SLUG --}}
@@ -25,13 +46,7 @@
                         <a href="{{ route('admin.rooms.edit', ['room' => $room['id']]) }}" class="text-decoration-none">
                             <button type="button" class="btn btn-warning mx-2"><i class="fas fa-edit"></i> Modifica Sala Meeting</button>
                         </a>
-                        {{-- DELETE BUTTON --}}
-                        {{-- <form action="{{ route('admin.rooms.destroy', ['room' => $room->id]) }}" method="POST" onsubmit="return confirm('Sei sicuro di voler cancellare {{ $room->title }}?')">
-                        @csrf
-                        @method('DELETE')
-                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i> Cancella il progetto</button>
-                        </form> --}}
-                        {{-- MODALE --}}
+                        {{-- DELETE MODALE --}}
                         <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal_room_delete-{{ $room->id }}"><i class="fas fa-trash"></i> Cancella Sala Meeting</button> 
                     </div>  
                 </div>
