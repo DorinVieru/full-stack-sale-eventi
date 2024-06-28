@@ -48,18 +48,18 @@ class EventController extends Controller
         $form_rooms = $request->all();
 
         // Controlla se ci sono eventi sovrapposti
-        $overlappingEvents = Event::where('meeting_room_id', $form_rooms['meeting_room_id'])
-        ->where(function ($query) use ($form_rooms) {
-            $query->whereBetween('start_date', [$form_rooms['start_date'], $form_rooms['end_date']])
-            ->orWhereBetween('end_date', [$form_rooms['start_date'], $form_rooms['end_date']])
-            ->orWhereRaw('? BETWEEN start_date AND end_date', [$form_rooms['start_date']])
-            ->orWhereRaw('? BETWEEN start_date AND end_date', [$form_rooms['end_date']]);
-        })->exists();
+        // $overlappingEvents = Event::where('meeting_room_id', $form_rooms['meeting_room_id'])
+        // ->where(function ($query) use ($form_rooms) {
+        //     $query->whereBetween('start_date', [$form_rooms['start_date'], $form_rooms['end_date']])
+        //     ->orWhereBetween('end_date', [$form_rooms['start_date'], $form_rooms['end_date']])
+        //     ->orWhereRaw('? BETWEEN start_date AND end_date', [$form_rooms['start_date']])
+        //     ->orWhereRaw('? BETWEEN start_date AND end_date', [$form_rooms['end_date']]);
+        // })->exists();
 
-        if ($overlappingEvents) {
-            $error_message = 'La sala meeting è già prenotata nelle date selezionate.';
-            return redirect()->route('admin.events.create', compact('event', 'error_message'));
-        }
+        // if ($overlappingEvents) {
+        //     $error_message = 'La sala meeting è già prenotata nelle date selezionate.';
+        //     return redirect()->route('admin.events.create', compact('event', 'error_message'));
+        // }
 
         // Creare una query per la modifica di un evento con lo stesso titolo
         $exists = Event::where('title', 'LIKE', $form_rooms['title'])->where('id', '!=', $event->id)->get();
@@ -167,5 +167,23 @@ class EventController extends Controller
         $event->delete();
 
         return redirect()->route('admin.events.index');
+    }
+
+    public function getAvailableMeetingRooms(Request $request)
+    {
+        $start_date = $request->input('start_date');
+        $end_date = $request->input('end_date');
+
+        // Recupera le sale meeting disponibili
+        $availableMeetingRooms = MeetingRoom::whereDoesntHave('events', function ($query) use ($start_date, $end_date) {
+            $query->where(function ($query) use ($start_date, $end_date) {
+                $query->whereBetween('start_date', [$start_date, $end_date])
+                    ->orWhereBetween('end_date', [$start_date, $end_date])
+                    ->orWhereRaw('? BETWEEN start_date AND end_date', [$start_date])
+                    ->orWhereRaw('? BETWEEN start_date AND end_date', [$end_date]);
+            });
+        })->get();
+
+        return response()->json($availableMeetingRooms);
     }
 }

@@ -13,6 +13,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/admin/events/available-rooms', [EventController::class, 'getAvailableMeetingRooms'])->name('admin.events.available-rooms');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -28,21 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
-
-// ROTTA API PER LA GESTIONE DELLA DISPONIBILITA' SALE
-Route::get('/api/check-availability', function (Request $request) {
-    $startDate = $request->query('start_date');
-    $endDate = $request->query('end_date');
-
-    $availableRooms = MeetingRoom::whereDoesntHave('events', function ($query) use ($startDate, $endDate) {
-        $query->whereBetween('start_date', [$startDate, $endDate])
-            ->orWhereBetween('end_date', [$startDate, $endDate])
-            ->orWhereRaw('? BETWEEN start_date AND end_date', [$startDate])
-            ->orWhereRaw('? BETWEEN start_date AND end_date', [$endDate]);
-    })->get();
-
-    return response()->json($availableRooms);
 });
 
 require __DIR__.'/auth.php';

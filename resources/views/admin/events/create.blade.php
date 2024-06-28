@@ -79,52 +79,8 @@
     </div>
 </div>
 
-<!-- Modale Bootstrap -->
-<div class="modal fade" id="meetingRoomModal" tabindex="-1" aria-labelledby="meetingRoomModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="meetingRoomModalLabel">Seleziona una Sala Meeting</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="table-responsive">
-                    <table id="table-project" class="table table-striped border align-middle">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>ID</th>
-                                <th>Nome</th>
-                                <th>Descrizione</th>
-                                <th>Capienza</th>
-                                <th>IMG</th>
-                                <th>TOOLS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($rooms as $room)
-                                <tr>
-                                    <td class="fw-bold">{{ $room->id }}</td>
-                                    <td class="text-capitalize">{{ $room->name }}</td>
-                                    <td class="">{{ Str::limit($room->description, 20, '...') }}</td>
-                                    <td>{{ $room->num_of_places_available }}</td>
-                                    <td><img src="{{ $room->cover_image != null ?  asset('/storage/' . $room->cover_image) : asset('/img/no-image.jpg') }}" alt="{{ $room->name }}" class="w-25 rounded-3"></td>
-                                    <td>
-                                        <div class="d-flex">
-                                            <button type="button" class="btn btn-primary select-room-btn" data-room-id="{{ $room->id }}" data-room-name="{{ $room->name }}">Seleziona</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Modale Rooms -->
+@include('admin.events.modal_rooms')
 
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -132,12 +88,16 @@
 {{-- SCRIPT PER MODALE --}}
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        axios.defaults.withCredentials = true;
+        
         const startDateInput = document.getElementById('start_date');
         const endDateInput = document.getElementById('end_date');
         const searchRoomBtn = document.getElementById('search-room-btn');
         const meetingRoomNameInput = document.getElementById('meeting_room_name');
         const meetingRoomIdInput = document.getElementById('meeting_room_id');
         const createEventBtn = document.getElementById('create-event-btn');
+        const meetingRoomList = document.getElementById('meeting-room-list');
 
         function enableSearchRoomButton() {
             if (startDateInput.value && endDateInput.value) {
@@ -157,17 +117,46 @@
         startDateInput.addEventListener('change', enableSearchRoomButton);
         endDateInput.addEventListener('change', enableSearchRoomButton);
 
-        document.querySelectorAll('.select-room-btn').forEach(function(button) {
-            button.addEventListener('click', function() {
-                const roomId = this.getAttribute('data-room-id');
-                const roomName = this.getAttribute('data-room-name');
+        searchRoomBtn.addEventListener('click', function() {
+            const startDate = startDateInput.value;
+            const endDate = endDateInput.value;
 
-                meetingRoomIdInput.value = roomId;
-                meetingRoomNameInput.value = roomName;
+            axios.get(`/admin/events/available-rooms`, {
+                params: {
+                    start_date: startDate,
+                    end_date: endDate
+                }
+            })
+            .then(response => {
+                const data = response.data;
+                meetingRoomList.innerHTML = '';
+                data.forEach(room => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td class="fw-bold">${room.id}</td>
+                        <td class="text-capitalize">${room.name}</td>
+                        <td>${room.description.substring(0, 20)}...</td>
+                        <td>${room.num_of_places_available}</td>
+                        <td><img src="${room.cover_image ? `/storage/${room.cover_image}` : '/img/no-image.jpg'}" alt="${room.name}" class="w-25 rounded-3"></td>
+                        <td>
+                            <button type="button" class="btn btn-primary select-room-btn" data-room-id="${room.id}" data-room-name="${room.name}">Seleziona</button>
+                        </td>
+                    `;
+                    meetingRoomList.appendChild(row);
+                });
 
-                $('#meetingRoomModal').modal('hide');
-                createEventBtn.disabled = false;
-            });
+                document.querySelectorAll('.select-room-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const roomId = this.getAttribute('data-room-id');
+                        const roomName = this.getAttribute('data-room-name');
+                        meetingRoomIdInput.value = roomId;
+                        meetingRoomNameInput.value = roomName;
+                        createEventBtn.disabled = false;
+                        $('#meetingRoomModal').modal('hide');
+                    });
+                });
+            })
+            .catch(error => console.error('Errore:', error));
         });
     });
 </script>

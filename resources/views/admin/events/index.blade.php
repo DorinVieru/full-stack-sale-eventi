@@ -19,6 +19,7 @@
                         <th>Data Inizio</th>
                         <th>Data Fine</th>
                         <th>IMG</th>
+                        <th>Stato</th>
                         <th>TOOLS</th>
                     </tr>
                 </thead>
@@ -32,6 +33,15 @@
                             <td>{{ \Carbon\Carbon::parse($event->start_date)->format('d/m/Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($event->end_date)->format('d/m/Y') }}</td>
                             <td><img src="{{ $event->cover_image != null ?  asset('/storage/' . $event->cover_image) : asset('/img/no-image.jpg') }}" alt="{{ $event->name }}" class="w-25 rounded-3"></td>
+                            <td>
+                                @if (\Carbon\Carbon::now()->setTimezone('Europe/Rome') >= $event->start_date && \Carbon\Carbon::now()->setTimezone('Europe/Rome') <= $event->end_date)
+                                    <span class="text-success fw-bold">In corso</span>
+                                @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') > $event->end_date)
+                                    <span class="text-danger fw-bold">Finito</span>
+                                @elseif (\Carbon\Carbon::now()->setTimezone('Europe/Rome') < $event->start_date)
+                                    <span class="text-warning fw-bold">In arrivo</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="d-flex">
                                     {{-- VIEW BUTTON --}}
