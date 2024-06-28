@@ -7,8 +7,8 @@
             </div>
             <div class="modal-body">
                 <div class="table-responsive">
-                    <table id="table-project" class="table table-striped border align-middle">
-                        <thead class="table-dark">
+                    <table id="table-rooms-modal" class="table table-striped border align-middle">
+                        <thead class="table-light">
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>

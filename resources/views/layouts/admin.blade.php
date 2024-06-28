@@ -16,6 +16,9 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    {{-- DATATABLE --}}
+    <link href="https://cdn.datatables.net/v/ju/jq-3.6.0/dt-2.0.8/datatables.min.css" rel="stylesheet"> 
+
     <!-- Usando Vite -->
     @vite(['resources/js/app.js'])
 </head>
@@ -63,5 +66,7 @@
         </div>
     </div>
 </body>
+
+<script src="https://cdn.datatables.net/v/ju/jq-3.6.0/dt-2.0.8/datatables.min.js"></script>
 
 </html>

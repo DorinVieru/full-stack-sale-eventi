@@ -8,8 +8,8 @@
             <a href="{{ route('admin.rooms.create') }}" > <button class="btn btn-primary ms-5">Aggiungi una nuova Sala Meeting</button></a>
             
         </div>
-        <div class="col-12 mt-5 table-responsive">
-            <table id="table-project" class="table table-striped border align-middle">
+        <div class="col-12 mt-5 table-responsive mb-5">
+            <table id="table-rooms" class="table table-striped border align-middle">
                 <thead class="table-light text-center">
                     <tr>
                         <th>ID</th>

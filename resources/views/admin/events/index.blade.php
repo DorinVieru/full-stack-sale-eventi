@@ -8,16 +8,16 @@
             <a href="{{ route('admin.events.create') }}" > <button class="btn btn-primary ms-5">Aggiungi un nuovo evento</button></a>
             
         </div>
-        <div class="col-12 mt-5 table-responsive">
-            <table id="table-project" class="table table-striped border align-middle">
+        <div class="col-12 mt-5 table-responsive mb-5">
+            <table id="table-events" class="table table-striped border align-middle">
                 <thead class="table-light text-center">
                     <tr>
                         <th>ID</th>
                         <th>Sala</th>
                         <th>Titolo</th>
                         <th>Descrizione</th>
-                        <th>Data Inizio</th>
-                        <th>Data Fine</th>
+                        <th>Inizio</th>
+                        <th>Fine</th>
                         <th>IMG</th>
                         <th>Stato</th>
                         <th>TOOLS</th>
