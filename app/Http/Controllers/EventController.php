@@ -155,12 +155,13 @@ class EventController extends Controller
         return redirect()->route('admin.events.index');
     }
 
+    // FUNZIONE PER RECUPERARE LE SALE MEETING DISPONIBILI IN UN RANGE DI DATE SPECIFICATE ALL'INTERNO DEL FORM DI CREAZIONE E MODIFICA
     public function getAvailableMeetingRooms(Request $request)
     {
         $start_date = $request->input('start_date');
         $end_date = $request->input('end_date');
 
-        // Recupera le sale meeting disponibili
+        // Recupero le sale meeting disponibili
         $availableMeetingRooms = MeetingRoom::whereDoesntHave('events', function ($query) use ($start_date, $end_date) {
             $query->where(function ($query) use ($start_date, $end_date) {
                 $query->whereBetween('start_date', [$start_date, $end_date])

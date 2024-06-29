@@ -173,7 +173,7 @@
                     ]
                 });
 
-                // Aggiungi event listener ai pulsanti di selezione
+                // Aggiunti event listener ai pulsanti di selezione
                 $('.select-room-btn').on('click', function() {
                     const roomId = $(this).data('room-id');
                     const roomName = $(this).data('room-name');
@@ -185,7 +185,7 @@
             })
             .catch(error => console.error('Errore:', error));
         });
-        // Imposta le date minime per gli input di data
+        // Impostazione date minime per gli input delle date
         const todayDate = new Date().toISOString().split('T')[0];
         $('#startDate').attr('min', todayDate);
         $('#endDate').attr('min', todayDate);
