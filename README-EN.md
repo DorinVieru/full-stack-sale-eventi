@@ -74,9 +74,9 @@ Read the README in other languages: [README-IT](README.md).
 
 <div>
  <h4>Desktop View</h4>
-  <strong>:warning: Work in progress</strong>
-  <h4>Mobile View</h4>
-  <strong>:warning: Work in progress</strong>
+  <img src="./public/img/screen-rooms.png" alt="rooms" width="300" height="250">
+  <img src="./public/img/screen-events.png" alt="events" width="300" height="250">
+  <img src="./public/img/screen-show-room.png" alt="show-room" width="300" height="250">
 </div>
 <br>
 
@@ -157,7 +157,6 @@ Here are the technologies used for creating ResEasy:
 
 <!-- Getting Started -->
 ## Getting Started
-### :no_entry: The instructions are not yet completed, so please wait before proceeding to clone the project locally. :no_entry: 
 
 If you want to install the application locally, there are several steps to follow. I have summarized them below; if there are complications, I refer you to the official documentation for every command you need to enter.
 <!-- Prerequisites -->
@@ -168,7 +167,8 @@ First of all, it is essential to initialize/create a new folder locally. We will
   ```
   composer create-project laravel/laravel project_name
   ```
-By "project_name" we mean the name of your personal project that you want to create, not the project to clone from GitHub.
+By "project_name" we mean the name of your personal project that you want to create, not the project to clone from GitHub. <br>
+Next, open the newly created project in your Visual Studio Code.
 
 <!-- Installation -->
 ### Installation
@@ -180,16 +180,33 @@ _Below is an example of how to clone the repo locally, but it is not the only me
    ```
    git clone https://github.com/DorinVieru/full-stack-sale-eventi.git
    ```
-3. Install composer
+3. Delete your project files (<strong>DO NOT DELETE THE .env FILE</strong>) and leave only the 'full-stack-events' folder. Take its contents and move it to the root folder of your project.
+4. In the .env file edit the database connection (if you want to use mysql) on line 22
    ```
-   composer install
+    DB_CONNECTION=mysql
+    DB_HOST=127.0.0.1
+    DB_PORT=3306
+    DB_DATABASE= the name you want to give the database
+    DB_USERNAME= root
+    DB_PASSWORD= (leave blank if you don't want to enter any passwords)
    ```
-4. Start PHP Launcher (if you use Windows) or MAMP (if you use Mac)
-5. Then you can run the command for npm
+5. Start PHP Launcher (if you use Windows) or MAMP (if you use Mac)
+6. Install pacific dev preset (<a href="https://packagist.org/packages/pacificdev/laravel_9_preset">for more info</a>) 
+    ```
+   composer require pacificdev/laravel_9_preset
+   ```
+7. Install the scafolding for Bootstrap, Sass and Vite
+    ```
+   php artisan preset:ui bootstrap --auth
+   ```
+8. Then you can run the command for npm
+   ```
+   npm i
+   ```
    ```
    npm run dev
    ```
-6. Finally, start the application with php
+9. Finally, start the application with php
    ```
    php artisan serve
    ```
