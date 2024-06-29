@@ -80,6 +80,16 @@ body {
     background-color: #6C63FF;
 }
 
+// DASHBOARD LINK
+.link-dash{
+    transition: 0.5s;
+
+    &:hover {
+        background-color: #6C63FF !important;
+        color: white !important;
+    }
+}
+
 //TABLE
 table{
     img{
