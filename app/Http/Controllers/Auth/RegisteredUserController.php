@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use Carbon\Carbon;
 
 class RegisteredUserController extends Controller
 {
@@ -31,12 +32,26 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'date_of_birth' => ['required', 'date_format:Y-m-d', 'before:' . Carbon::now()->subYears(18)->format('Y-m-d')],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], $errors = [
+            'name.required' => 'Il nome è obbligatorio.',
+            'name.max' => 'Il nome deve contere al massimo 50 caratteri.',
+            'name.min' => 'Il nome deve contere almeno 2 caratteri.',
+            'date_of_birth.required' => 'La data di nascita è obbligatoria.',
+            'date_of_birth.before' => 'Devi essere maggiorenne per poter accedere al servizio.',
+            'email.required' => "L'indirizzo email è obbligatorio.",
+            'email.max' => "L'indirizzo email deve contere al massimo 255 caratteri.",
+            'email.unique' => "L'indirizzo email inserito è già presente nel database. Prova un indirizzo email diverso.",
+            'password.required' => "La password è obbligatoria.",
+            'password.min' => "La password deve essere lunga almeno 8 caratteri.",
+            'password.confirmed' => "Le password inserite non coincidono. Riprova.",
         ]);
 
         $user = User::create([
             'name' => $request->name,
+            'date_of_birth' => $request->date_of_birth,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
