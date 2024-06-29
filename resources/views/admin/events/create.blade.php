@@ -63,7 +63,7 @@
                 </div>
                 {{-- CERCA SALE MEETING DISPONIBILI --}}
                 <div class="mb-3">
-                    <input type="hidden" name="meetingRoomId" id="meetingRoomId">
+                    <input type="hidden" name="meeting_room_id" id="meeting_room_id">
                     <input type="text" name="meetingRoomName" class="form-control mb-2" id="meetingRoomName" placeholder="Sala Meeting Selezionata" readonly>
                     <button type="button" id="searchRoomBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#meetingRoomModal" disabled>Cerca Sale Meeting Disponibili</button>
                 </div>
@@ -90,7 +90,7 @@
     $(document).ready(function() {
         const searchRoomBtn = $('#searchRoomBtn');
         const meetingRoomList = $('#meeting-room-list');
-        const meetingRoomIdInput = $('#meetingRoomId');
+        const meetingRoomIdInput = $('#meeting_room_id');
         const meetingRoomNameInput = $('#meetingRoomName');
         const createEventBtn = $('#createEventBtn');
 

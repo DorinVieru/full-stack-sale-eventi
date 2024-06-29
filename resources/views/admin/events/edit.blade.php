@@ -54,13 +54,13 @@
                 </div>
                 <div class="row mb-3">
                     <div class="col-6">
-                        <input type="date" name="start_date" class="form-control @error ('start_date') is-invalid @enderror" id="start_date" placeholder="Data Inizio" required value="{{ old('start_date') ?? $event->start_date }}">
+                        <input type="date" name="start_date" class="form-control @error ('start_date') is-invalid @enderror" id="startDate" placeholder="Data Inizio" required value="{{ old('start_date') ?? $event->start_date }}">
                         @error ('start_date')
                             <div class="text-danger fw-semibold">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="col-6">
-                        <input type="date" name="end_date" class="form-control @error ('end_date') is-invalid @enderror" id="end_date" placeholder="Data Fine" required value="{{ old('end_date') ?? $event->end_date }}">
+                        <input type="date" name="end_date" class="form-control @error ('end_date') is-invalid @enderror" id="endDate" placeholder="Data Fine" required value="{{ old('end_date') ?? $event->end_date }}">
                         @error ('end_date')
                             <div class="text-danger fw-semibold">{{ $message }}</div>
                         @enderror
@@ -69,12 +69,12 @@
                 {{-- CERCA SALE MEETING DISPONIBILI --}}
                 <div class="mb-3">
                     <input type="hidden" name="meeting_room_id" id="meeting_room_id">
-                    <input type="text" name="meeting_room_name" class="form-control mb-2" id="meeting_room_name" placeholder="Sala Meeting Selezionata" readonly>
-                    <button type="button" id="search-room-btn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#meetingRoomModal" disabled>Cerca Sale Meeting Disponibili</button>
+                    <input type="text" name="meetingRoomName" class="form-control mb-2" id="meetingRoomName" placeholder="Sala Meeting Selezionata" readonly>
+                    <button type="button" id="searchRoomBtn" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#meetingRoomModal" disabled>Cerca Sale Meeting Disponibili</button>
                 </div>
 
                 <div class="d-flex justify-content-center mt-4 mb-5">
-                    <button type="submit" class="btn btn-warning px-5 fs-4" id="create-event-btn" style="display: none">Modifica Evento</button>
+                    <button type="submit" class="btn btn-warning px-5 fs-4" id="createEventBtn" style="display: none">Modifica Evento</button>
                 </div>
             </form>
         </div>
@@ -90,40 +90,42 @@
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-{{-- SCRIPT PER MODALE --}}
+{{-- SCRIPT PER MODALE, DATATABLE E GESTIONE DATE --}}
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const startDateInput = document.getElementById('start_date');
-        const endDateInput = document.getElementById('end_date');
-        const searchRoomBtn = document.getElementById('search-room-btn');
-        const meetingRoomNameInput = document.getElementById('meeting_room_name');
-        const meetingRoomIdInput = document.getElementById('meeting_room_id');
-        const createEventBtn = document.getElementById('create-event-btn');
-        const meetingRoomList = document.getElementById('meeting-room-list');
+    $(document).ready(function() {
+        const searchRoomBtn = $('#searchRoomBtn');
+        const meetingRoomList = $('#meeting-room-list');
+        const meetingRoomIdInput = $('#meeting_room_id');
+        const meetingRoomNameInput = $('#meetingRoomName');
+        const createEventBtn = $('#createEventBtn');
 
+        // Funzione per abilitare o disabilitare pulsante ricerca
         function enableSearchRoomButton() {
-            if (startDateInput.value && endDateInput.value) {
-                searchRoomBtn.disabled = false;
+            const startDate = $('#startDate').val();
+            const endDate = $('#endDate').val();
+            if (startDate && endDate) {
+                searchRoomBtn.prop('disabled', false);
                 resetMeetingRoomSelection();
             } else {
-                searchRoomBtn.disabled = true;
+                searchRoomBtn.prop('disabled', true);
             }
         }
 
+        // Funzione per resettare pulsante di ricerca al cambio di data
         function resetMeetingRoomSelection() {
-            meetingRoomNameInput.value = '';
-            meetingRoomIdInput.value = '';
-            createEventBtn.style.display = 'none';
+            meetingRoomNameInput.val('');
+            meetingRoomIdInput.val('');
+            createEventBtn.css('display', 'none');
         }
 
-        startDateInput.addEventListener('change', enableSearchRoomButton);
-        endDateInput.addEventListener('change', enableSearchRoomButton);
+        $('#startDate').on('change', enableSearchRoomButton);
+        $('#endDate').on('change', enableSearchRoomButton);
 
-        searchRoomBtn.addEventListener('click', function() {
-            const startDate = startDateInput.value;
-            const endDate = endDateInput.value;
+        searchRoomBtn.on('click', function() {
+            const startDate = $('#startDate').val();
+            const endDate = $('#endDate').val();
 
-            axios.get(`/admin/events/available-rooms`, {
+            axios.get('/admin/events/available-rooms', {
                 params: {
                     start_date: startDate,
                     end_date: endDate
@@ -131,35 +133,67 @@
             })
             .then(response => {
                 const data = response.data;
-                meetingRoomList.innerHTML = '';
+                meetingRoomList.empty();
                 data.forEach(room => {
-                    const row = document.createElement('tr');
-                    row.innerHTML = `
-                        <td class="fw-bold">${room.id}</td>
-                        <td class="text-capitalize">${room.name}</td>
-                        <td>${room.description.substring(0, 20)}...</td>
-                        <td>${room.num_of_places_available}</td>
-                        <td><img src="${room.cover_image ? `/storage/${room.cover_image}` : '/img/no-image.jpg'}" alt="${room.name}" class="w-25 rounded-3"></td>
-                        <td>
-                            <button type="button" class="btn btn-primary select-room-btn" data-room-id="${room.id}" data-room-name="${room.name}">Seleziona</button>
-                        </td>
+                    const row = `
+                        <tr>
+                            <td class="fw-bold">${room.id}</td>
+                            <td class="text-capitalize">${room.name}</td>
+                            <td>${room.description.substring(0, 20)}...</td>
+                            <td>${room.num_of_places_available}</td>
+                            <td><img src="${room.cover_image ? `/storage/${room.cover_image}` : '/img/no-image.jpg'}" alt="${room.name}" class="rounded-3"></td>
+                            <td>
+                                <button type="button" class="btn btn-primary select-room-btn" data-room-id="${room.id}" data-room-name="${room.name}">Seleziona</button>
+                            </td>
+                        </tr>
                     `;
-                    meetingRoomList.appendChild(row);
+                    meetingRoomList.append(row);
                 });
 
-                document.querySelectorAll('.select-room-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const roomId = this.getAttribute('data-room-id');
-                        const roomName = this.getAttribute('data-room-name');
-                        meetingRoomIdInput.value = roomId;
-                        meetingRoomNameInput.value = roomName;
-                        createEventBtn.style.display = 'block';
-                        $('#meetingRoomModal').modal('hide');
-                    });
+                // Inizializza DataTables
+                $('#table-rooms-modal').DataTable({
+                    responsive: true,
+                    language: {
+                        url: '/it-IT.json'
+                    },
+                    "columns": [
+                        {
+                            "sortable": true
+                        },
+                        {
+                            "sortable": true
+                        },
+                        {
+                            "sortable": true
+                        },
+                        {
+                            "sortable": true
+                        },
+                        {
+                            "sortable": false
+                        },
+                        {
+                            "sortable": false
+                        },
+                    ]
+                });
+
+                // Aggiungi event listener ai pulsanti di selezione
+                $('.select-room-btn').on('click', function() {
+                    const roomId = $(this).data('room-id');
+                    const roomName = $(this).data('room-name');
+                    meetingRoomIdInput.val(roomId);
+                    meetingRoomNameInput.val(roomName);
+                    createEventBtn.css('display', 'block');
+                    $('#meetingRoomModal').modal('hide');
                 });
             })
             .catch(error => console.error('Errore:', error));
         });
+        // Imposta le date minime per gli input di data
+        const todayDate = new Date().toISOString().split('T')[0];
+        $('#startDate').attr('min', todayDate);
+        $('#endDate').attr('min', todayDate);
     });
 </script>
 
